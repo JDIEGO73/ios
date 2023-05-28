@@ -1,245 +1,233 @@
 <?php 
 
-//Calcular el tope_________________________
-function tope($num_1,$num_2,$num_3)
-{	
-	$tope=0;
-	if ($num_1 < $num_2 && $num_1 < $num_3) 
-	{
-		$tope=$num_1;
-	}
-
-	if ($num_2 < $num_1 && $num_2 < $num_3) 
-	{
-		$tope=$num_2;
-	}
-
-	if ($num_3 < $num_2 && $num_3 < $num_1) 
-	{
-		$tope=$num_3;
-	}
-	
-	if ($num_1 == $num_2 && $num_2 == $num_3) {
-		$tope=$num_1;
-	}
-	return $tope;
-}
-//_________________________________________
-
 $resultado="";
-$arreglo[100]=null;
+$arreglo_agregacion[100]=null;
 $guardar=0;
 $pertenencia=0;
-$Y1[100]=null;
-$Y2[100]=null;
-$Y3[100]=null;
+$salida_1[100]=null;
+$salida_2[100]=null;
+$salida_3[100]=null;
 $suma=0;
-$promedio=0;
+$centroide=0;
 $numerador=0;
 $denominador=0;
 
 for ($x=0; $x <= 100 ; $x++) 
 {
-	$arreglo[$x]=0;
-	$Y1[$x]=triangulo(-40,0,60,$x);
-	$Y2[$x]=triangulo(40,50,80,$x);
-	$Y3[$x]=gaus(11,100,$x);
+	$arreglo_agregacion[$x]=0;
+	$salida_1[$x]=triangulo(-40,0,60,$x);
+	$salida_2[$x]=triangulo(40,50,80,$x);
+	$salida_3[$x]=gaus(11,100,$x);
 }
 
 
 //Reglas___________________________________
+
 for ($x=0; $x <= 100 ; $x++) 
 {
-
-//1____________________________________________________________________
-	
-	if ($Arreglo_1[0] == 0 || $Arreglo_2[0] == 0 || $Arreglo_3[0] == 0)
-	{}
-
-	else
+	//1
+	if ($arreglo_1[0] != 0 && $arreglo_2[0] != 0 && $arreglo_3[0] != 0)
 	{
-	$resultado="malo";
-	$tope=tope($Arreglo_1[0],$Arreglo_2[0],$Arreglo_3[0]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[0],$arreglo_2[0],$arreglo_3[0]);
+		$pertenencia=1;
+		include "agregacion.php";
 	}
-
-//2_____________________________________________________________________
-
-if ($Arreglo_1[0] == 0 || $Arreglo_2[1] == 0 || $Arreglo_3[0] == 0)
-	{}
-
-	else
+	//2
+	if ($arreglo_1[0] != 0 && $arreglo_2[0] != 0 && $arreglo_3[1] != 0)
 	{
-	$resultado="malo";
-	$tope=tope($Arreglo_1[0],	$Arreglo_2[1],	$Arreglo_3[0]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[0],$arreglo_2[0],$arreglo_3[1]);
+		$pertenencia=1;
+		include "agregacion.php";
 	}
-
-//3_____________________________________________________________________
-
-if ($Arreglo_1[1] == 0 || $Arreglo_2[0] == 0 || $Arreglo_3[0] == 0)
-	{}
-
-	else
+	//3
+	if ($arreglo_1[0] != 0 && $arreglo_2[0] != 0 && $arreglo_3[2] != 0)
 	{
-	$resultado="malo";
-	$tope=tope($Arreglo_1[1],$Arreglo_2[0],$Arreglo_3[0]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[0],$arreglo_2[0],$arreglo_3[2]);
+		$pertenencia=1;
+		include "agregacion.php";
 	}
-
-//4____________________________________________________________________
-
-if ($Arreglo_1[0] == 0 || $Arreglo_2[0] == 0 || $Arreglo_3[1] == 0)
-	{}
-
-	else
+	//4
+	if ($arreglo_1[0] != 0 && $arreglo_2[1] != 0 && $arreglo_3[0] != 0)
 	{
-	$resultado="malo";
-	$tope=tope($Arreglo_1[0],$Arreglo_2[0],$Arreglo_3[1]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[0],$arreglo_2[1],$arreglo_3[0]);
+		$pertenencia=1;
+		include "agregacion.php";
 	}
-
-//5_____________________________________________________________________
-
-if ($Arreglo_1[0] == 0 || $Arreglo_2[1] == 0 || $Arreglo_3[1] == 0)
-	{}
-
-	else
+	//5
+	if ($arreglo_1[0] != 0 && $arreglo_2[1] != 0 && $arreglo_3[1] != 0)
 	{
-	$resultado="malo";
-	$tope=tope($Arreglo_1[0],	$Arreglo_2[1],	$Arreglo_3[1]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[0],$arreglo_2[1],$arreglo_3[1]);
+		$pertenencia=1;
+		include "agregacion.php";
 	}
-
-//6_____________________________________________________________________
-
-if ($Arreglo_1[1] == 0 || $Arreglo_2[0] == 0 || $Arreglo_3[1] == 0)
-	{}
-
-	else
+	//6
+	if ($arreglo_1[0] != 0 && $arreglo_2[1] != 0 && $arreglo_3[2] != 0)
 	{
-	$resultado="normal";
-	$tope=tope($Arreglo_1[1],	$Arreglo_2[0],	$Arreglo_3[1]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[0],$arreglo_2[1],$arreglo_3[2]);
+		$pertenencia=2;
+		include "agregacion.php";
 	}
-
-//7____________________________________________________________________
-	
-	if ($Arreglo_1[1] == 0 || $Arreglo_2[1] == 0 || $Arreglo_3[1] == 0)
-	{}
-
-	else
+	//7
+	if ($arreglo_1[0] != 0 && $arreglo_2[2] != 0 && $arreglo_3[0] != 0)
 	{
-	$resultado="normal";
-	$tope=tope($Arreglo_1[1],$Arreglo_2[1],$Arreglo_3[1]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[0],$arreglo_2[2],$arreglo_3[0]);
+		$pertenencia=1;
+		include "agregacion.php";
 	}
-
-//8_____________________________________________________________________
-	
-	if ($Arreglo_1[1] == 0 || $Arreglo_2[1] == 0 || $Arreglo_3[2] == 0)
-	{}
-
-	else
+	//8
+	if ($arreglo_1[0] != 0 && $arreglo_2[2] != 0 && $arreglo_3[1] != 0)
 	{
-	$resultado="bueno";
-	$tope=tope($Arreglo_1[1],$Arreglo_2[1],$Arreglo_3[2]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[0],$arreglo_2[2],$arreglo_3[1]);
+		$pertenencia=1;
+		include "agregacion.php";
 	}
-
-//9____________________________________________________________________
-	if ($Arreglo_1[2] == 0 || $Arreglo_2[1] == 0 || $Arreglo_3[2] == 0)
-	{}
-
-	else
+	//9
+	if ($arreglo_1[0] != 0 && $arreglo_2[2] != 0 && $arreglo_3[2] != 0)
 	{
-	$resultado="bueno";
-	$tope=tope($Arreglo_1[2],$Arreglo_2[1],$Arreglo_3[2]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[0],$arreglo_2[2],$arreglo_3[2]);
+		$pertenencia=2;
+		include "agregacion.php";
 	}
-
-//10_____________________________________________________________________
-
-if ($Arreglo_1[2] == 0 || $Arreglo_2[2] == 0 || $Arreglo_3[2] == 0)
-	{}
-
-	else
+	//10
+	if ($arreglo_1[1] != 0 && $arreglo_2[0] != 0 && $arreglo_3[0] != 0)
 	{
-	$resultado="bueno";
-	$tope=tope($Arreglo_1[2],	$Arreglo_2[2],	$Arreglo_3[2]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[1],$arreglo_2[0],$arreglo_3[0]);
+		$pertenencia=1;
+		include "agregacion.php";
 	}
-
-//11_____________________________________________________________________
-
-if ($Arreglo_1[1] == 0 || $Arreglo_2[2] == 0 || $Arreglo_3[2] == 0)
-	{}
-
-	else
+	//11
+	if ($arreglo_1[1] != 0 && $arreglo_2[0] != 0 && $arreglo_3[1] != 0)
 	{
-	$resultado="normal";
-	$tope=tope($Arreglo_1[1],	$Arreglo_2[2],	$Arreglo_3[2]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[1],$arreglo_2[0],$arreglo_3[1]);
+		$pertenencia=2;
+		include "agregacion.php";
 	}
-
-//12_____________________________________________________________________
-
-if ($Arreglo_1[1] == 0 || $Arreglo_2[2] == 0 || $Arreglo_3[2] == 0)
-	{}
-
-	else
+	//12
+	if ($arreglo_1[1] != 0 && $arreglo_2[0] != 0 && $arreglo_3[2] != 0)
 	{
-	$resultado="malo";
-	$tope=tope($Arreglo_1[1],	$Arreglo_2[2],	$Arreglo_3[2]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[1],$arreglo_2[0],$arreglo_3[2]);
+		$pertenencia=2;
+		include "agregacion.php";
 	}
-
-//13_____________________________________________________________________
-
-if ($Arreglo_1[2] == 0 || $Arreglo_2[2] == 0 || $Arreglo_3[0] == 0)
-	{}
-
-	else
+	//13
+	if ($arreglo_1[1] != 0 && $arreglo_2[1] != 0 && $arreglo_3[0] != 0)
 	{
-	$resultado="malo";
-	$tope=tope($Arreglo_1[2],	$Arreglo_2[2],	$Arreglo_3[0]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[1],$arreglo_2[1],$arreglo_3[0]);
+		$pertenencia=2;
+		include "agregacion.php";
 	}
-
-//14_____________________________________________________________________
-
-if ($Arreglo_1[1] == 0 || $Arreglo_2[1] == 0 || $Arreglo_3[2] == 0)
-	{}
-
-	else
+	//14
+	if ($arreglo_1[1] != 0 && $arreglo_2[1] != 0 && $arreglo_3[1] != 0)
 	{
-	$resultado="bueno";
-	$tope=tope($Arreglo_1[1],	$Arreglo_2[1],	$Arreglo_3[2]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[1],$arreglo_2[1],$arreglo_3[1]);
+		$pertenencia=2;
+		include "agregacion.php";
 	}
-
-//15_____________________________________________________________________
-
-if ($Arreglo_1[0] == 0 || $Arreglo_2[1] == 0 || $Arreglo_3[2] == 0)
-	{}
-
-	else
+	//15
+	if ($arreglo_1[1] != 0 && $arreglo_2[1] != 0 && $arreglo_3[2] != 0)
 	{
-	$resultado="normal";
-	$tope=tope($Arreglo_1[0],	$Arreglo_2[1],	$Arreglo_3[2]);
-	include "pertenencia.php";
+		$tope=min($arreglo_1[1],$arreglo_2[1],$arreglo_3[2]);
+		$pertenencia=3;
+		include "agregacion.php";
 	}
-//_________________________________________	
-	$numerador=$numerador+($arreglo[$x]*$x);
-	$denominador=$denominador+($arreglo[$x]);
+	//16
+	if ($arreglo_1[1] != 0 && $arreglo_2[2] != 0 && $arreglo_3[0] != 0)
+	{
+		$tope=min($arreglo_1[1],$arreglo_2[2],$arreglo_3[0]);
+		$pertenencia=1;
+		include "agregacion.php";
+	}
+	//17
+	if ($arreglo_1[1] != 0 && $arreglo_2[2] != 0 && $arreglo_3[1] != 0)
+	{
+		$tope=min($arreglo_1[1],$arreglo_2[2],$arreglo_3[1]);
+		$pertenencia=2;
+		include "agregacion.php";
+	}
+	//18
+	if ($arreglo_1[1] != 0 && $arreglo_2[2] != 0 && $arreglo_3[2] != 0)
+	{
+		$tope=min($arreglo_1[1],$arreglo_2[2],$arreglo_3[2]);
+		$pertenencia=3;
+		include "agregacion.php";
+	}
+	//19
+	if ($arreglo_1[2] != 0 && $arreglo_2[0] != 0 && $arreglo_3[0] != 0)
+	{
+		$tope=min($arreglo_1[2],$arreglo_2[0],$arreglo_3[0]);
+		$pertenencia=1;
+		include "agregacion.php";
+	}
+	//20
+	if ($arreglo_1[2] != 0 && $arreglo_2[0] != 0 && $arreglo_3[1] != 0)
+	{
+		$tope=min($arreglo_1[2],$arreglo_2[0],$arreglo_3[1]);
+		$pertenencia=2;
+		include "agregacion.php";
+	}
+	//21
+	if ($arreglo_1[2] != 0 && $arreglo_2[0] != 0 && $arreglo_3[2] != 0)
+	{
+		$tope=min($arreglo_1[2],$arreglo_2[0],$arreglo_3[2]);
+		$pertenencia=2;
+		include "agregacion.php";
+	}
+	//22
+	if ($arreglo_1[2] != 0 && $arreglo_2[1] != 0 && $arreglo_3[0] != 0)
+	{
+		$tope=min($arreglo_1[2],$arreglo_2[1],$arreglo_3[0]);
+		$pertenencia=2;
+		include "agregacion.php";
+	}
+	//23
+	if ($arreglo_1[2] != 0 && $arreglo_2[1] != 0 && $arreglo_3[1] != 0)
+	{
+		$tope=min($arreglo_1[2],$arreglo_2[1],$arreglo_3[1]);
+		$pertenencia=2;
+		include "agregacion.php";
+	}
+	//24
+	if ($arreglo_1[2] != 0 && $arreglo_2[1] != 0 && $arreglo_3[2] != 0)
+	{
+		$tope=min($arreglo_1[2],$arreglo_2[1],$arreglo_3[2]);
+		$pertenencia=3;
+		include "agregacion.php";
+	}
+	//25
+	if ($arreglo_1[2] != 0 && $arreglo_2[0] != 0 && $arreglo_3[2] != 0)
+	{
+		$tope=min($arreglo_1[2],$arreglo_2[0],$arreglo_3[2]);
+		$pertenencia=2;
+		include "agregacion.php";
+	}
+	//26
+	if ($arreglo_1[2] != 0 && $arreglo_2[2] != 0 && $arreglo_3[1] != 0)
+	{
+		$tope=min($arreglo_1[2],$arreglo_2[2],$arreglo_3[1]);
+		$pertenencia=3;
+		include "agregacion.php";
+	}
+	//27
+	if ($arreglo_1[2] != 0 && $arreglo_2[2] != 0 && $arreglo_3[2] != 0)
+	{
+		$tope=min($arreglo_1[2],$arreglo_2[2],$arreglo_3[2]);
+		$pertenencia=3;
+		include "agregacion.php";
+	}
+	//
 
-		echo "$x - ";
-		printf("%.2f", $arreglo[$x]);
-		echo "<br><br>";
+	//echo "<br><br>";
+	$arreglo_agregacion[$x]=round($arreglo_agregacion[$x]);
+	//echo $arreglo_agregacion[$x];
+	//echo "<br>";
 	 
+	$numerador=$numerador+($arreglo_agregacion[$x]*$x);
+	$denominador=$denominador+($arreglo_agregacion[$x]);
 }
 
-$promedio=$numerador/$denominador;
-$promedio=round($promedio);
-echo "centroide = ".$promedio;
+echo "<br>";
+$centroide=$numerador/$denominador;
+$centroide=round($centroide);
+echo "La calidad del dispositivo es = ".$centroide."%";
+
 ?>
